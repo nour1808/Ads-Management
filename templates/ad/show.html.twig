@@ -58,21 +58,27 @@
             </div>
 
             <div class="col">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="http://placehold.jp/64x64.png">
+                {% set a = ad.author %}
+                <div class="col">
+
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="{{ path('user_show',{'slug':a.slug}) }}">
+                                <img src="{{ a.picture }}" class="avatar avatar-medium" alt="Avatar de {{ a.fullName}}">
+                            </a>
+                        </div>
+                        <div class="col">
+                            <h3>
+                                <a href="{{ path('user_show',{'slug':a.slug}) }}">{{ a.fullName }}</a>
+                            </h3>
+                            <span class="badge badge-primary">{{ a.ads| length }}
+                                annonces</span>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h3>Noureddine Berjaoui</h3>
-                        <span class="badge badge-primary">3 annonces</span>
-                    </div>
+                    {{ a.description|raw }}
                 </div>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur eligendi necessitatibus fugit quo ad facilis quasi in reprehenderit libero sequi.</p>
-                <p>Odit ad magni sint in adipisci totam eum, dolores, ipsa autem, fuga exercitationem perferendis aliquid illo aut tenetur deleniti atque.</p>
-                <p>Itaque ullam, at quod distinctio dicta totam nulla debitis aspernatur quia ex vel sed velit aut voluptatem eligendi, nisi vitae!</p>
+
             </div>
-
         </div>
-    </div>
 
-{% endblock %}
+    {% endblock %}

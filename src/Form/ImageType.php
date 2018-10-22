@@ -3,29 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Image;
+use App\Form\ApplicationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class ImageType extends AbstractType
+class ImageType extends ApplicationType
 {
-
-    /**
-     * Permet d'avoir la configuration de base d'un champs
-     * 
-     */
-    private function getConfiguration($label, $placeholder)
-    {
-        return [
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-        ];
-
-    }
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)
