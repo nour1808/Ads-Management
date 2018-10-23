@@ -17,6 +17,10 @@
         <div class="card-body">
             <p class="card-text">{{ ad.introduction }}</p>
             <a class="btn btn-primary" href="{{ url }}" role="button">Savoir plus</a>
+
+            {% if app.user == ad.author %}
+            <a href="{{ path('ads_edit', {'slug' : ad.slug }  ) }}" class="btn btn-secondary">Modifier votre annonce</a>
+            {% endif %}
         </div>
     </div>
 </div>
