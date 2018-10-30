@@ -11,6 +11,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Role;
+use App\Entity\Booking;
 
 class AppFixtures extends Fixture
 {
@@ -34,7 +35,7 @@ class AppFixtures extends Fixture
         $adminUser = new User();
         $adminUser->setFirstName('Nour')
             ->setLastName('Berjaoui')
-            ->setEmail('guideofmorocco@gmail.com')
+            ->setEmail('nour1808@gmail.com')
             ->setHash($this->encoder->encodePassword($adminUser, 'password'))
             ->setPicture('https://picsum.photos/960/600')
             ->setIntroduction($faker->sentence)
@@ -77,7 +78,7 @@ class AppFixtures extends Fixture
         for ($i = 1; $i < 30; $i++) {
             $ad = new Ad();
             $title = $faker->sentence();
-            $coverImage = $faker->imageUrl(1000, 350);
+            $coverImage = $faker->imageUrl(1280, 490);
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join('</p><p>', $faker->paragraphs(5)) . '</p>';
 
@@ -92,7 +93,7 @@ class AppFixtures extends Fixture
                 ->setAuthor($user);
             $manager->persist($ad);
 
-            for ($j = 1; $j <= mt_rand(3, 12); $j++) {
+            for ($j = 1; $j <= mt_rand(6, 18); $j++) {
                 $image = new Image();
                 $image->setUrl($faker->imageUrl())
                     ->setCaption($faker->sentence)
@@ -100,6 +101,35 @@ class AppFixtures extends Fixture
 
                 $manager->persist($image);
             }
+
+            //Gestion des réservations :
+            for ($j = 1; $j <= mt_rand(0, 10); $j++) {
+                $booking = new Booking();
+                $createdAt = $faker->dateTimeBetween('-6 months');
+                $startDate = $faker->dateTimeBetween('-3 months');
+                $startDateClone = clone $startDate;
+
+                $duration = mt_rand(2, 10);
+
+                $endDate = $startDateClone->modify("+$duration days ");
+
+                $amount = $ad->getPrice() * $duration;
+
+                $booker = $users[mt_rand(0, count($users) - 1)];
+
+                $comment = $faker->paragraph();
+
+                $booking->setBooker($booker)
+                    ->setAd($ad)
+                    ->setCreatedAt($createdAt)
+                    ->setStartDate($startDate)
+                    ->setEndDate($endDate)
+                    ->setAmount($amount)
+                    ->setComment($comment);
+
+                $manager->persist($booking);
+            }
+
         }
 
         $manager->flush();
