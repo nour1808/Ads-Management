@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} HOMEPAGE{% endblock %}
+{% block title %}
+    HOMEPAGE{% endblock %}
 
 {% block body %}
 
@@ -15,121 +16,45 @@
             </p>
         </div>
 
-        <h2 class="mt-5 mb-5">Nos appartements stars</h2>
+        <h2 class="h1 my-5">Nos appartements stars</h2>
 
         <div class="row">
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-header text-center">
-                        <p>3 Chambres
-                            <strong>65&euro;/nuit</strong><br>
-                            <small>pas encore notée</small>
-                        </p>
-                    </div>
-                    <img style="height: 200px; width: 100%; display: block;" src="http://placehold.jp/1000x400.png" alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-secondary" href="#" role="button">Savoir plus</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-header text-center">
-                        <p>3 Chambres
-                            <strong>65&euro;/nuit</strong><br>
-                            <small>pas encore notée</small>
-                        </p>
-                    </div>
-                    <img style="height: 200px; width: 100%; display: block;" src="http://placehold.jp/1000x400.png" alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-secondary" href="#" role="button">Savoir plus</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card mb-3">
-                    <div class="card-header text-center">
-                        <p>3 Chambres
-                            <strong>65&euro;/nuit</strong><br>
-                            <small>pas encore notée</small>
-                        </p>
-                    </div>
-                    <img style="height: 200px; width: 100%; display: block;" src="http://placehold.jp/1000x400.png" alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a class="btn btn-secondary" href="#" role="button">Savoir plus</a>
-                    </div>
-                </div>
-            </div>
-
+            {% for ad in ads %}
+                {% include 'ad/_ad.html.twig' with {
+                    'ad' : ad.annonce
+                } %}
+            {% endfor %}
         </div>
 
-        <h2 class="mt-5 mb-5">Nos Propriétaires stars</h2>
-
+        <h2 class="h1 my-5">Nos Propriétaires stars</h2>
         <div class="row mb-5 ">
 
-            <div class="col-md-4">
-                <div class="card border-secondary mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Noureddine Berjaoui</h4>
-                        <hr>
+            {% for data in users %}
+                <div class="col-md-4">
+                    <div class="card border-secondary mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{{ path('user_show', {'slug' : data.user.slug }) }}">
+                                    {{data.user.fullName}}
+                                </a>
+                            </h4>
 
-                        <div class="card-text">
-                            <img src="http://placehold.jp/64x64.png" alt="" class="float-left mr-3"/>
-                            <p>Lorem, ipsum lorem dolor sit ipsum lorem dolor sit ipsum lorem dolor sit ipsum
-                            </p>
-                            <a href="#" class="btn btn-sucess float-right">En savoir plus!</a>
+                            <hr>
+
+                            <div class="card-text">
+                                <a href="{{ path('user_show', {'slug' : data.user.slug }) }}" class="btn btn-sucess float-left">
+                                    <img src="{{ data.user.picture }}" alt="{{data.user.fullName}}" class="avatar  mr-3 "/>
+                                </a>
+                                <p>{{data.user.introduction}}
+                                </p>
+                                <a href="{{ path('user_show', {'slug' : data.user.slug }) }}" class="btn btn-success float-right my-3">Voir le profile
+                                </a>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-secondary mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Noureddine Berjaoui</h4>
-                        <hr>
-
-                        <div class="card-text">
-                            <img src="http://placehold.jp/64x64.png" alt="" class="float-left mr-3"/>
-                            <p>Lorem, ipsum lorem dolor sit ipsum lorem dolor sit ipsum lorem dolor sit ipsum
-                            </p>
-                            <a href="#" class="btn btn-sucess float-right">En savoir plus!</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card border-secondary mb-3">
-                    <div class="card-body">
-                        <h4 class="card-title">Noureddine Berjaoui</h4>
-                        <hr>
-
-                        <div class="card-text">
-                            <img src="http://placehold.jp/64x64.png" alt="" class="float-left mr-3"/>
-                            <p>Lorem, ipsum lorem dolor sit ipsum lorem dolor sit ipsum lorem dolor sit ipsum</p>
-                            <a href="#" class="btn btn-sucess float-right">En savoir plus!</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
 
         </div>
 

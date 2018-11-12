@@ -1,0 +1,51 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Modification de la réservation Numéro : #{{book.id}}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="py-5">
+            Modification de la réservation : #{{book.id}}
+            <br>
+        </h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col alert alert-info">
+                <strong>Annonce liée :</strong>
+                {{ book.ad.title }}
+                <br>
+                <strong>Auteur :</strong>
+                {{ book.booker.fullName }}
+                <br>
+                <strong>Date de création :</strong>
+                {{ book.createdAt|date('d/m/Y H:m') }}
+                <br>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.startDate) }}
+                {{ form_row(form.endDate) }}
+                {{ form_row(form.comment) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.booker) }}
+                {{ form_row(form.ad) }}
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-5">
+            <i class="fas fa-save"></i>Enregistrer les modifications
+        </button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

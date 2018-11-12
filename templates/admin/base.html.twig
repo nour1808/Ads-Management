@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>RBN-{% block title %}{% endblock %}
+        </title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/css/app.css') }} ">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+        {% include 'admin/partials/header.html.twig' %}
+
+        {% block body %}{% endblock %}
+
+        {% include 'admin/partials/footer.html.twig' %}
+
+        <script src="{{ asset('js/jquery.min.js') }} "></script>
+        <script src="{{ asset('js/bootstrap.min.js') }} "></script>
+        <script src="{{ asset('build/js/app.js') }}"></script>
+        {% block javascripts %}{% endblock %}

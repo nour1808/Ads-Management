@@ -10,13 +10,14 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="md-4 mt-4">Réservation de l'annonce:{{ ad.title }}</h1>
+        <h1 class="h2 md-4 mt-4">Réservation de l'annonce:<em>{{ ad.title }}</em>
+        </h1>
         <p class="md-4">Vous êtes sur le point de réserver le bien de
             <b>{{ ad.author.fullName }}</b>, dites nous tout, on s'occupe de reste !</p>
 
         {{ form_start(form)}}
         <div class="alert alert-light">
-            <h4 class="md-4">Quelles sont vos dates qui vous intéressent
+            <h4 class="my-4">Quelles sont vos dates qui vous intéressent
             </h4>
             <div class="row mt-4">
                 <div class="col">{{form_row(form.startDate) }}</div>
@@ -24,17 +25,17 @@
 
             </div>
 
-            <h4 class="md-4">Montant du séjour :<span id="amount"></span>&euro;</h4>
+            <h4 class="my-4">Montant du séjour :<span id="amount"></span>&euro;</h4>
 
             <span id="days">
                 1&nbsp;
 
             </span>
             nuit(s) à
-            {{ad.price}}
-            &euro; / nuit</span>
+            {{ad.price | number_format( 2,',', ' ' ) }}
+            &euro; par nuit</span>
 
-        <h4 class="md-4 mt-4">Vous avez un commentaire ?</h4>
+        <h4 class="my-5">Vous avez un commentaire ?</h4>
         {{form_widget(form.comment)}}
 
         <button type="submit" class="btn btn-success mt-4">

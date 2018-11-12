@@ -19,6 +19,20 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function findBestUsers($limit = 3)
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u as user , AVG(c.rating) as avgRatings, COUNT(c) as sumComments ')
+            ->join('u.ads', 'a')
+            ->join('a.comments', 'c')
+            ->groupBy('u')
+            ->having('sumComments > 2')
+            ->orderBy('avgRatings', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
@@ -34,7 +48,7 @@ class UserRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+     */
 
     /*
     public function findOneBySomeField($value): ?User
@@ -46,5 +60,5 @@ class UserRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+     */
 }

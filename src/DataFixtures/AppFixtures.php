@@ -12,6 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Role;
 use App\Entity\Booking;
+use App\Entity\Comment;
 
 class AppFixtures extends Fixture
 {
@@ -128,6 +129,16 @@ class AppFixtures extends Fixture
                     ->setComment($comment);
 
                 $manager->persist($booking);
+
+                if (mt_rand(0, 1)) {
+                    $comment = new Comment();
+
+                    $comment->setContent($faker->paragraph())
+                        ->setAuthor($booker)
+                        ->setRating(mt_rand(1, 5))
+                        ->setAd($ad);
+                    $manager->persist($comment);
+                }
             }
 
         }

@@ -1,0 +1,77 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Administration des réservations
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <h1 class="my-5">Gestion des réservations</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Visiteur</th>
+                    <th>Annonce</th>
+                    <th class="text-center">Durée</th>
+                    <th class="text-center">Montant</th>
+                    <th >Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for book in pagination.data %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.createdAt |  date('d/m/Y H:m') }}
+                            min</td>
+                        <td>
+                            <img src="{{ book.booker.picture }}" class="avatar avatar-mini mr-2">
+                            {{ book.booker.fullName }}
+                        </td>
+
+                        <td>
+                            {{ book.ad.title }}
+                        </td>
+
+                        <td class="text-center">
+                            <span class="badge badge-primary rounded">
+                                {{ book.duration }}
+                                nuits
+                            </span>
+                        </td>
+
+                        <td class="text-center">
+                            <span class="badge badge-primary rounded">
+                                {{ book.amount | number_format(2, ',', ' ') }}
+                                &euro;
+                            </span>
+                        </td>
+                        <td>
+                            <a href="{{path('admin_book_edit' , {'id': book.id} )}}" class="btn btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{{path('admin_book_delete' , {'id': book.id} )}}" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer cette réservation ?');">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        {#
+{% include 'admin/partials/pagination.html.twig' with {
+    'route' : 'admin_books_index'
+} %}
+ #}
+
+        {{ pagination.display }}
+
+    </div>
+
+{% endblock %}

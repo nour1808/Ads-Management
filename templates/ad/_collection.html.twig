@@ -4,7 +4,9 @@
 
     <input type="hidden" id="widgets-counter" value="0"/>
     <div class="form-group">
-        <button type="button" class="btn btn-success" id="add-image">Ajouter une image</button>
+        <button type="button" class="btn btn-success" id="add-image">
+            <i class="fas fa-plus">Ajouter une image</i>
+        </button>
     </div>
 {% endblock %}
 
@@ -14,8 +16,14 @@
 
 {% block _ad_images_entry_widget %}
     <div class="form-group" id="block_{{id}}">
-        <div class="row">
-            <div class="col-10">
+        <div class="row align-items-center mb-3">
+            <div class="col-2">
+                {% if value %}
+                    <img src="{{ value.url }}" alt="" class="img-fluid" style="width:100px;">
+                {% endif %}
+            </div>
+
+            <div class="col-8">
                 <div class="row">
                     <div class="col">
                         {{ form_widget(form.url) }}

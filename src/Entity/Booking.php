@@ -35,7 +35,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Veuillez entrer une date valide ")
-     * @Assert\GreaterThan("today" ,  message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui !")
+     * @Assert\GreaterThan("today" ,  message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui !", groups={"front"})
      */
     private $startDate;
 
@@ -154,6 +154,7 @@ class Booking
     /**
      * Permet d'enregister des champs dans la base automatiquement
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      */
     public function prePersist()
     {

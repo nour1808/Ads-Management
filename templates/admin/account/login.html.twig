@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Connexion à l'administration</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('build/css/app.css') }} ">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+            }
+            .card {
+                margin-top: 10%;
+            }
+            .fas:before {
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="col-md-4 mb-5">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <i class="fas fa-lock"></i>
+                        Connexion à l'administration
+                    </h4>
+                </div>
+                <div class="card-body">
+                    {% if hasError %}
+                        <div class="alert alert-danger">Le nom d'utilisateur ou le mot de passe est invalide.</div>
+                    {% endif %}
+                    <form action="{{ path('admin_account_login') }}" method="post">
+                        <div class="form-group">
+                            <label for="email">Email :</label>
+                            <input type="text" name="_username" id="email" class="form-control" placeholder="Entrer Votre email" value="{{ username }}" required="required"/>
+                        </div>
+                        <div class=" form-group" ="form-group" ">
+                            <label for="password">Email :</label>
+                            <input type="password" name="_password" id="password" class="form-control" placeholder="Entrer Votre mot de passe" required="required"/>
+                        </div>
+                        <div class="form-group clearfix">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-lock-open"></i>Connexion</button>
+                            <a href="{{ path('homepage') }}" class="btn bnt-link float-right">
+                                <i class="fas fa-arrow-circle-left"></i>
+                                Retour au site
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

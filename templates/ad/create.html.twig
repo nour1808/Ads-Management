@@ -9,19 +9,50 @@
 {% block body %}
 
     <div class="container">
-        <h1>Créer votre annonce</h1>
+        <h1 class="my-5">Créer votre annonce</h1>
 
         {{ form_start(form) }}
 
-        {{ form_widget(form) }}
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Informations générales</h2>
+                    <hr>
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.slug) }}
+                    {{ form_row(form.price) }}
+                    {{ form_row(form.rooms) }}
+                </div>
+                <div class="alert alert-light">
+                    <h2>Détails de l'annonce</h2>
+                    <hr>
+                    {{ form_row(form.introduction) }}
+                    {{ form_row(form.content) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h2>Image de l'annonce</h2>
+                    <hr>
+                    {{ form_row(form.coverImage) }}
+                    {{ form_row(form.images) }}
+                </div>
+            </div>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        <div class="alert alert alert-light clearfix">
+            <h2 class="alert-heading my-4">Sauvegarder mon annonce</h2>
+            <p>Vous êtes le point de créer votre annonce
+                <button type="submit" class="btn btn-primary float-right">
+                    <i class="fas fa-check"></i>Enregistrer les modifications
+                </button>
+            </div>
 
-        {{ form_end(form) }}
-    </div>
+            {{ form_end(form) }}
+        </div>
 
-{% endblock %}
+    {% endblock %}
 
-{% block javascripts %}
-    <script src="/js/ad.js"></script>
-{% endblock %}
+    {% block javascripts %}
+        <script src="{{ asset('js/ad.js') }}"></script>
+    {% endblock %}

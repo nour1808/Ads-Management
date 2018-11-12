@@ -1,0 +1,109 @@
+@import url('./bootstrap.min.css');
+
+div.container, div.container-fluid{
+   padding: 20px; 
+}
+
+div.ad-title{
+    padding: 2em;
+    background-size: cover;
+    background-position: center center;
+
+    h1, p{
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    }
+
+   .btn{
+        margin-top: 2em;
+        font-size: 1em;
+        line-height: 1.5em;
+    }
+
+}
+
+
+div.carousel-caption{
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.card-ad{
+    min-height: 630px;
+}
+
+.card-title{
+    color: black;
+}
+
+.card-title:hover{
+    text-decoration: none;
+}
+
+.card-body{
+    padding-bottom: 0;
+}
+
+.avatar{
+   max-width: 128px;
+   max-height: 128px;
+   border-radius: 50%; 
+
+        &.avatar-medium{
+        max-width: 84px;
+        max-height: 84px;  
+        }
+
+        &.avatar-mini{
+        max-width: 32px;
+        max-height: 32px;  
+        }
+
+        &.avatar-micro{
+        max-width: 16px;
+        max-height: 16px;  
+        }
+
+}
+
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+text-decoration-line: line-through !important;
+}
+
+span.rating i{
+    color : goldenrod;
+}
+
+.whitestars span.rating i{
+ color : white;
+}
+
+.alert{
+
+    a{
+    text-decoration: none;
+    }
+
+    .btn{
+    color: white;
+    }
+}
+
+
+a:hover{
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+.fas::before{
+    margin-right: 5px;
+}
+
+.btn{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card-dash{
+    min-height: 100px;
+}
