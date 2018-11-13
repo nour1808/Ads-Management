@@ -1,7 +1,7 @@
 
 ###> symfony/framework-bundle ###
 /.env
-/.vscode
+/.vscode/
 /public/bundles/
 /var/
 /vendor/
